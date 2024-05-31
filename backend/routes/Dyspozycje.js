@@ -10,6 +10,7 @@ router.get('/interwencje', async (req, res) => {
         const interwencje = await prisma.interwencje.findMany();
         res.json(interwencje);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas pobierania interwencji.' });
     }
 });
@@ -33,6 +34,7 @@ router.get('/interwencje/:id', async (req, res) => {
         }
         res.json(interwencja);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas pobierania interwencji.' });
     }
 });
@@ -53,6 +55,7 @@ router.post('/interwencje', async (req, res) => {
         });
         res.status(201).json(newInterwencja);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas dodawania interwencji.' });
     }
 });
@@ -75,6 +78,7 @@ router.put('/interwencje/:id', async (req, res) => {
         });
         res.json(updatedInterwencja);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas aktualizacji interwencji.' });
     }
 });
@@ -86,6 +90,7 @@ router.delete('/interwencje/:id', async (req, res) => {
         await prisma.interwencje.delete({ where: { id: Number(id) } });
         res.status(204).end();
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas usuwania interwencji.' });
     }
 });
@@ -96,6 +101,7 @@ router.get('/dyspozycje', async (req, res) => {
         const dyspozycje = await prisma.dyspozycje.findMany();
         res.json(dyspozycje);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas pobierania dyspozycji.' });
     }
 });
@@ -110,6 +116,7 @@ router.get('/dyspozycje/:id', async (req, res) => {
         }
         res.json(dyspozycja);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas pobierania dyspozycji.' });
     }
 });
@@ -126,6 +133,7 @@ router.post('/dyspozycje', async (req, res) => {
         });
         res.status(201).json(newDyspozycja);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas dodawania dyspozycji.' });
     }
 });
@@ -144,6 +152,7 @@ router.put('/dyspozycje/:id', async (req, res) => {
         });
         res.json(updatedDyspozycja);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas aktualizacji dyspozycji.' });
     }
 });
@@ -155,6 +164,7 @@ router.delete('/dyspozycje/:id', async (req, res) => {
         await prisma.dyspozycje.delete({ where: { id: Number(id) } });
         res.status(204).end();
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Wystąpił błąd podczas usuwania dyspozycji.' });
     }
 });
