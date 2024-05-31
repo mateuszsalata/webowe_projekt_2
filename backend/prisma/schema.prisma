@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model dyspozycje {
+  id             Int         @id @default(autoincrement())
+  interwencja_id Int
+  pojazd_id      Int
+  interwencje    interwencje @relation(fields: [interwencja_id], references: [id], onUpdate: Restrict, map: "dyspozycje_ibfk_1")
+  pojazdy        pojazdy     @relation(fields: [pojazd_id], references: [id], onUpdate: Restrict, map: "dyspozycje_ibfk_2")
+
+  @@index([interwencja_id], map: "interwencja_id")
+  @@index([pojazd_id], map: "pojazd_id")
+}
+
+model interwencje {
+  id           Int          @id @default(autoincrement())
+  data_wyjazdu DateTime     @db.DateTime(0)
+  data_powrotu DateTime     @db.DateTime(0)
+  typ          String       @db.VarChar(50)
+  opis         String       @db.Text
+  adres        String?      @db.VarChar(255)
+  odleglosc    Decimal?     @db.Decimal(10, 2)
+  dyspozycje   dyspozycje[]
+}
+
+model naprawy {
+  id        Int      @id @default(autoincrement())
+  pojazd_id Int
+  data      DateTime @db.Date
+  opis      String   @db.Text
+  koszt     Decimal  @db.Decimal(10, 2)
+  pojazdy   pojazdy  @relation(fields: [pojazd_id], references: [id], onUpdate: Restrict, map: "naprawy_ibfk_1")
+
+  @@index([pojazd_id], map: "pojazd_id")
+}
+
+model pojazdy {
+  id                  Int           @id @default(autoincrement())
+  numer_rejestracyjny String        @db.VarChar(50)
+  numer_operacyjny    String?       @db.VarChar(8)
+  marka               String        @db.VarChar(50)
+  model               String        @db.VarChar(50)
+  rok_produkcji       Int           @db.Year
+  przebieg            Int
+  przeznaczenie       String        @db.VarChar(10)
+  obraz               String?       @db.VarChar(255)
+  dyspozycje          dyspozycje[]
+  naprawy             naprawy[]
+  przeglady           przeglady[]
+  wyposazenie         wyposazenie[]
+}
+
+model przeglady {
+  id        Int      @id @default(autoincrement())
+  pojazd_id Int
+  data      DateTime @db.Date
+  typ       String   @db.VarChar(50)
+  wynik     String   @db.VarChar(50)
+  pojazdy   pojazdy  @relation(fields: [pojazd_id], references: [id], onUpdate: Restrict, map: "przeglady_ibfk_1")
+
+  @@index([pojazd_id], map: "pojazd_id")
+}
+
+model wyposazenie {
+  id                        Int       @id @default(autoincrement())
+  pojazd_id                 Int
+  nazwa                     String    @db.VarChar(100)
+  stan                      String    @db.VarChar(50)
+  data_ostatniego_przegladu DateTime? @db.Date
+  waznosc_przegladu         Int?
+  pojazdy                   pojazdy   @relation(fields: [pojazd_id], references: [id], onUpdate: Restrict, map: "wyposazenie_ibfk_1")
+
+  @@index([pojazd_id], map: "pojazd_id")
+}
