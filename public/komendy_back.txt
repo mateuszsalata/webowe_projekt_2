@@ -1,0 +1,9 @@
+npm install -g prisma
+prisma init
+npm install @prisma/client
+
+po pobraniu bazy danych
+prisma db pull
+prisma generate
+
+
