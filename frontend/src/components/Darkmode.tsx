@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 
-type Theme = 'light' | 'dark';
-
-const ThemeToggleButton: React.FC = () => {
-    const [theme, setTheme] = useState<Theme>('light');
+const ThemeSwitcher: React.FC = () => {
+    const [darkTheme, setDarkTheme] = useState(false);
 
     const toggleTheme = () => {
-        setTheme((prevTheme) => prevTheme === 'light' ? 'dark' : 'light');
+        setDarkTheme(!darkTheme);
     };
 
-    document.body.className = theme;
-
     return (
-        <button onClick={toggleTheme}>
-            Zmień na {theme === 'light' ? 'ciemny' : 'jasny'} motyw
-        </button>
+        <div style={{
+            backgroundColor: darkTheme ? '#333' : '#FFF',
+            color: darkTheme ? '#FFF' : '#333',
+            transition: 'all 0.3s ease'
+        }}>
+            <button onClick={toggleTheme}>
+                {darkTheme ? 'Jasny motyw' : 'Ciemny motyw'}
+            </button>
+            {/* Reszta twojej aplikacji */}
+        </div>
     );
 };
 
-export default ThemeToggleButton;
+export default ThemeSwitcher;
