@@ -28,8 +28,9 @@ a {
 }
 
 nav {
-    background-color: #f8f9fa;
+    background-color: #303030;
     padding: 10px;
+    border-radius: 15px;
 }
 
 nav ul {
@@ -46,7 +47,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: whitesmoke;
     font-size: 16px;
 }
 

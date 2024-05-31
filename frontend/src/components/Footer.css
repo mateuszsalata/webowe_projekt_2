@@ -1,5 +1,5 @@
 footer {
-    background-color: #f8f9fa;
+    background-color: #303030;
     padding: 20px;
     position: fixed;
     left: 0;
@@ -10,6 +10,6 @@ footer {
 
 footer p {
     margin: 0;
-    color: #333;
+    color: whitesmoke;
     font-size: 14px;
 }
