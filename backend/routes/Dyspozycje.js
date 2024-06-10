@@ -110,7 +110,7 @@ router.get('/dyspozycje', async (req, res) => {
 router.get('/dyspozycje/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const dyspozycja = await prisma.dyspozycje.findUnique({ where: { id: Number(id) } });
+        const dyspozycja = await prisma.dyspozycje.findUnique({ where: { id: Number(id) }, include: {pojazdy: true, interwencje: true}  });
         if (!dyspozycja) {
             return res.status(404).json({ error: 'Dyspozycja nie znaleziona.' });
         }
@@ -161,7 +161,7 @@ router.put('/dyspozycje/:id', async (req, res) => {
 router.delete('/dyspozycje/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        await prisma.dyspozycje.delete({ where: { id: Number(id) } });
+        await prisma.dyspozycje.delete({ where: { id: Number(id) }});
         res.status(204).end();
     } catch (error) {
         console.error(error);

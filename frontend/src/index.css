@@ -10,3 +10,20 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+.PojazdDetails {
+    display: inline;
+}
+.pojazdContainer {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+
+.pojazdBox{
+    width: 25%;
+    padding: 10px;
+}
+
+.pojazdBox img{
+    width: 100%;
+}

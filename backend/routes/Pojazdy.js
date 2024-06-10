@@ -18,7 +18,11 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const pojazd = await prisma.pojazdy.findUnique({ where: { id: Number(id) } });
+        const pojazd = await prisma.pojazdy.findUnique({ where: { id: Number(id) }, include: {dyspozycje: {
+        include: {
+            interwencje: true
+        }}
+            } });
         if (!pojazd) {
             return res.status(404).json({ error: 'Pojazd nie znaleziony.' });
         }

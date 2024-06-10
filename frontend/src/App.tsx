@@ -8,6 +8,7 @@ import Przeglady from './pages/Przeglady';
 import Wyjazdy from './pages/Wyjazdy';
 import OProjekcie from './pages/OProjekcie';
 import './App.css';
+import PojazdDetailsPage from "./pages/PojazdDetailsPage.tsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/pojazdy" element={<Pojazdy />} />
+                    <Route path="/pojazdy/:pojazdId" element={<PojazdDetailsPage />} />
                     <Route path="/przeglady" element={<Przeglady />} />
                     <Route path="/wyjazdy" element={<Wyjazdy />} />
                     <Route path="/o-projekcie" element={<OProjekcie />} />
