@@ -8,7 +8,7 @@ CREATE TABLE Pojazdy (
     rok_produkcji YEAR NOT NULL,
     przebieg INT NOT NULL,
     przeznaczenie VARCHAR(10) NOT NULL,
-    obraz VARCHAR(255);
+    obraz VARCHAR(255)
 );
 
 -- Tabela Przeglądy

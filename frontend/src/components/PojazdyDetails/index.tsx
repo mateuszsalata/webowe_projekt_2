@@ -35,12 +35,28 @@ export default function PojazdDetails() {
                 <li className="list-group-item">Dane
                     pojazdu: {pojazdData.przeznaczenie} {pojazdData.marka} {pojazdData.model}</li>
                 <li className="list-group-item">Numer rejestracyjny: {pojazdData.numer_rejestracyjny}</li>
-                <li className="list-group-item">Numer rejestracyjny: {pojazdData.dyspozycje[0].interwencje.adres}</li>
             </ul>
             <img
                 src={pojazdData.obraz.substring(6)}
                 alt="Pojazd"
             />
+            <p>Ostatnia dyspozycja:</p>
+            <ul className="list-group">
+                <li className="list-group-item">Adres: {pojazdData.dyspozycje[0].interwencje.adres}</li>
+                <li className="list-group-item">Data
+                    wyjazdu: {new Date(pojazdData.dyspozycje[0].interwencje.data_wyjazdu).toLocaleDateString() + ' ' + new Date(pojazdData.dyspozycje[0].interwencje.data_wyjazdu).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })}</li>
+                <li className="list-group-item">Odległość: {pojazdData.dyspozycje[0].interwencje.odleglosc}</li>
+                <li className="list-group-item">Typ: {pojazdData.dyspozycje[0].interwencje.typ}</li>
+                <li className="list-group-item">Opis: {pojazdData.dyspozycje[0].interwencje.opis}</li>
+                <li className="list-group-item">Data
+                    powrotu: {new Date(pojazdData.dyspozycje[0].interwencje.data_powrotu).toLocaleDateString() + ' ' + new Date(pojazdData.dyspozycje[0].interwencje.data_powrotu).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })}</li>
+            </ul>
             <br/>
             <Link to={'/pojazdy'} content={'Wróć'}>Wróć</Link>
         </div>

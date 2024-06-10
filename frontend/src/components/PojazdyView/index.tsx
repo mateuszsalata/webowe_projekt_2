@@ -29,6 +29,11 @@ export default function PojazdyView() {
                     <h2>{pojazd.numer_operacyjny}</h2>
                 </div>
             ))}
+            {/*{pojazdy.dyspozycje.map((dyspozycja) => (*/}
+            {/*    <div className={'pojazdBox'} key={pojazdy.dyspozycja.id}>*/}
+            {/*        <h2>{dyspozycja.adres}</h2>*/}
+            {/*    </div>*/}
+            {/*))}*/}
         </div>
     );
 }
